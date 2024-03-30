@@ -17,7 +17,7 @@ export class LoginComponent {
     usuario: new FormControl('', Validators.required),
     contrasena: new FormControl('', Validators.required)
   });
-  
+
   submited: boolean = false;
 
 
@@ -39,8 +39,8 @@ export class LoginComponent {
     const data = this.userForm.getRawValue() as Users;
 
     let result = await firstValueFrom(this.userservice.auth(data));
-    this.sessionservice.setSession(result);
-    this.router.navigate(["/empleados"]);
+    this.sessionservice.setSession(result.data!); //guarda la sesión
+    this.router.navigate(["/empleados"]); //redirecciona cuando inicie sesión
   }
 
 }

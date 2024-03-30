@@ -1,21 +1,22 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
-import { Users } from '../models/user.model';
 import { HttpClient } from '@angular/common/http';
 import { Result } from '../models/result.model';
+import { Employees } from '../models/employees.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class UsersService {
+export class EmployeesService {
 
-  private url: string = environment.urlapi + "/users"
+  private url: string = environment.urlapi + "/employees"
 
   constructor(
     private http: HttpClient
   ) { }
 
-  auth(user: Users) {
-    return this.http.post<Result<Users>>(`${this.url}/auth`, user);
+  create(employee: Employees){
+    return this.http.post<Result<Employees>>(`${this.url}`, employee);
   }
+
 }

@@ -3,31 +3,31 @@
         <img src="assets/img/logo-white.png" alt="logo" />
         <h6>Registro de usuario</h6>
     </div>
-    <form [formGroup]="employeeForm" class="form">
+    <form [formGroup]="employeeForm" class="form" (ngSubmit)="register()">
         <div class="mb-3">
             <label class="form-label">Primer nombre</label>
-            <input type="text" class="form-control"
-            formControlName="primer_nombre" [ngClass]="{'is-invalid': submited && employeeForm.get('primer_nombre')?.errors}">
+            <input type="text" class="form-control" formControlName="primer_nombre"
+                [ngClass]="{'is-invalid': submited && employeeForm.get('primer_nombre')?.errors}">
         </div>
         <div class="mb-3">
             <label class="form-label">Segundo nombre</label>
-            <input type="text" class="form-control"
-            formControlName="segundo_nombre" [ngClass]="{'is-invalid': submited && employeeForm.get('segundo_nombre')?.errors}">
+            <input type="text" class="form-control" formControlName="segundo_nombre"
+                [ngClass]="{'is-invalid': submited && employeeForm.get('segundo_nombre')?.errors}">
         </div>
         <div class="mb-3">
             <label class="form-label">Primer apellido</label>
-            <input type="text" class="form-control"
-            formControlName="primer_apellido" [ngClass]="{'is-invalid': submited && employeeForm.get('primer_apellido')?.errors}">
+            <input type="text" class="form-control" formControlName="primer_apellido"
+                [ngClass]="{'is-invalid': submited && employeeForm.get('primer_apellido')?.errors}">
         </div>
         <div class="mb-3">
             <label class="form-label">Segundo apellido</label>
-            <input type="text" class="form-control"
-            formControlName="segundo_apellido" [ngClass]="{'is-invalid': submited && employeeForm.get('segundo_apellido')?.errors}">
+            <input type="text" class="form-control" formControlName="segundo_apellido"
+                [ngClass]="{'is-invalid': submited && employeeForm.get('segundo_apellido')?.errors}">
         </div>
         <div class="mb-3">
             <label class="form-label">Tipo documento</label>
-            <select class="form-select"
-            formControlName="tipo_documento" [ngClass]="{'is-invalid': submited && employeeForm.get('tipo_documento')?.errors}">
+            <select class="form-select" formControlName="tipo_documento"
+                [ngClass]="{'is-invalid': submited && employeeForm.get('tipo_documento')?.errors}">
                 <option value="" hidden>Seleccionar</option>
                 <option value="CC">Cédula de Ciudadanía</option>
                 <option value="TI">Tarjeta de Identidad</option>
@@ -36,33 +36,33 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Número documento</label>
-            <input type="text" class="form-control"
-            formControlName="num_documento" [ngClass]="{'is-invalid': submited && employeeForm.get('num_documento')?.errors}">
+            <input type="text" class="form-control" formControlName="num_documento"
+                [ngClass]="{'is-invalid': submited && employeeForm.get('num_documento')?.errors}">
         </div>
         <div class="mb-3">
             <label class="form-label">Fecha de nacimiento</label>
-            <input type="date" class="form-control"
-            formControlName="fecha_nacimiento" [ngClass]="{'is-invalid': submited && employeeForm.get('fecha_nacimiento')?.errors}">
+            <input type="date" class="form-control" formControlName="fecha_nacimiento"
+                [ngClass]="{'is-invalid': submited && employeeForm.get('fecha_nacimiento')?.errors}">
         </div>
         <div class="mb-3">
             <label class="form-label">Dirección</label>
-            <input type="text" class="form-control"
-            formControlName="direccion" [ngClass]="{'is-invalid': submited && employeeForm.get('direccion')?.errors}">
+            <input type="text" class="form-control" formControlName="direccion"
+                [ngClass]="{'is-invalid': submited && employeeForm.get('direccion')?.errors}">
         </div>
         <div class="mb-3">
             <label class="form-label">Correo</label>
-            <input type="text" class="form-control"
-            formControlName="correo_electronico" [ngClass]="{'is-invalid': submited && employeeForm.get('correo_electronico')?.errors}">
+            <input type="text" class="form-control" formControlName="correo_electronico"
+                [ngClass]="{'is-invalid': submited && employeeForm.get('correo_electronico')?.errors}">
         </div>
         <div class="mb-3">
             <label class="form-label">Celular</label>
-            <input type="text" class="form-control"
-            formControlName="celular" [ngClass]="{'is-invalid': submited && employeeForm.get('celular')?.errors}">
+            <input type="text" class="form-control" formControlName="celular"
+                [ngClass]="{'is-invalid': submited && employeeForm.get('celular')?.errors}">
         </div>
         <div class="mb-3">
             <label class="form-label">Género</label>
-            <select class="form-select" 
-            formControlName="genero" [ngClass]="{'is-invalid': submited && employeeForm.get('genero')?.errors}">
+            <select class="form-select" formControlName="genero"
+                [ngClass]="{'is-invalid': submited && employeeForm.get('genero')?.errors}">
                 <option value="" hidden>Seleccionar</option>
                 <option value="F">Femenino</option>
                 <option value="M">Masculino</option>
@@ -70,41 +70,40 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Cargo</label>
-            <select class="form-select"
-            formControlName="cargo" [ngClass]="{'is-invalid': submited && employeeForm.get('cargo')?.errors}">
+            <select class="form-select" formControlName="cargo" (change)="onChangeCargo($event)"
+                [ngClass]="{'is-invalid': submited && employeeForm.get('cargo')?.errors}">
                 <option value="" hidden>Seleccionar</option>
                 <option value="Administrador">Administrador</option>
                 <option value="Operativo">Operativo</option>
             </select>
         </div>
-        <div class="mb-3">
+        <div class="mb-3" *ngIf="!isAdmin">
             <label class="form-label">Área</label>
-            <select class="form-select"
-            formControlName="id_area" [ngClass]="{'is-invalid': submited && employeeForm.get('id_area')?.errors}">
-                <option value="" hidden>Seleccionar</option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
-                <option value=""></option>
+            <select class="form-select" formControlName="id_area"
+                [ngClass]="{'is-invalid': submited && employeeForm.get('id_area')?.errors}">
+                <option value="null" hidden>Seleccionar</option>
+                @for (area of areasList; track $index) {
+                <option [value]="area.id_area">{{area.area}}</option>
+                }
+
             </select>
         </div>
         <div class="mb-3">
             <label class="form-label">Usuario</label>
-            <input type="text" class="form-control"
-            formControlName="usuario" [ngClass]="{'is-invalid': submited && employeeForm.get('usuario')?.errors}">
+            <input type="text" class="form-control" formControlName="usuario"
+                [ngClass]="{'is-invalid': submited && employeeForm.get('usuario')?.errors}">
         </div>
         <div class="mb-3">
             <label class="form-label">Contraseña</label>
-            <input type="password" class="form-control"
-            formControlName="contrasena" [ngClass]="{'is-invalid': submited && employeeForm.get('contrasena')?.errors}">
+            <input type="password" class="form-control" formControlName="contrasena"
+                [ngClass]="{'is-invalid': submited && employeeForm.get('contrasena')?.errors,
+            'is-valid': !employeeForm.get('contrasena')?.errors}">
+                <small class="form-text text-muted">La contraseña debe tener mínimo 8 caracteres y máximo 15, debe combinar mayúsculas y minúsculas, números y signos.</small>
         </div>
         <div class="row buttons">
-            <button type="button">Regresar</button>
+            <button type="button" routerLink="/">Regresar</button>
             <button type="submit">Registrar</button>
         </div>
-        
+
     </form>
 </div>

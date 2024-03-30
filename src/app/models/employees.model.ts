@@ -14,7 +14,7 @@ export interface Employees{
     celular: string,
     genero: string,
     cargo: string,
-    id_area: string,
+    id_area: string | null,
     usuario?: string,
     contrasena?: string,
     Area?: Areas
