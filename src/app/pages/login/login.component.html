@@ -1,0 +1,30 @@
+<div class="container-login">
+    <div class="heading">
+        <img src="assets/img/logo-white.png" alt="logo" />
+    </div>
+    <form [formGroup]="userForm" class="form" (ngSubmit)="login()">
+        <div class="row mb-md-3 form-group">
+            <label for="inputEmail3" class="col-form-label">Usuario</label>
+            <div class="input-group">
+                <div class="input-group-text"><i class="fa-solid fa-circle-user"></i></div>
+                <input type="text" class="form-control" placeholder="Ingrese su usuario" 
+                formControlName="usuario" [ngClass]="{'is-invalid': submited && userForm.get('usuario')?.errors}">
+            </div>
+        </div>
+        <div class="row mb-3 form-group">
+            <label for="inputEmail3" class="col-form-label">Contraseña</label>
+            <div class="input-group">
+                <div class="input-group-text"><i class="fa-solid fa-lock"></i></div>
+                <input type="password" class="form-control" placeholder="Ingrese su contraseña" 
+                formControlName="contrasena" [ngClass]="{'is-invalid': submited && userForm.get('contrasena')?.errors}">
+            </div>
+        </div>
+        <div class="row mb-3 forgotten">
+            <a href="/pages/recovery-password.html">Olvidó su contraseña?</a>
+        </div>
+        <div class="row buttons">
+            <a href="/pages/user-register.html">Registrarse</a>
+            <button type="submit">Inicia sesión</button>
+        </div>
+    </form>
+</div>
