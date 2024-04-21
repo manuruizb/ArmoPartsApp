@@ -17,5 +17,17 @@ export class UsersService {
 
   auth(user: Users) {
     return this.http.post<Result<Users>>(`${this.url}/auth`, user);
+  };
+
+  forgotPassword(data: any) {
+    return this.http.post<Result<string>>(`${this.url}/validate-send-email`, data);
+  };
+
+  recoveryPassword(contrasena: string, id_empleado: string) {
+    return this.http.put<Result<string>>(`${this.url}/recovery-password`, {
+      id_empleado,
+      contrasena
+    });
   }
+
 }

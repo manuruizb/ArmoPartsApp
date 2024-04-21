@@ -15,4 +15,8 @@ export class SessionService {
   getSession() {
     return JSON.parse(localStorage.getItem("user-session")!) as Users;
   }
+
+  closeSession() {
+    localStorage.clear();
+  }
 }

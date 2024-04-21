@@ -9,13 +9,17 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { HttpConfigInterceptor } from './interceptors/httpconfig.interceptor';
 import { UserRegisterComponent } from './pages/user-register/user-register.component';
+import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
+import { RecoveryPasswordComponent } from './pages/recovery-password/recovery-password.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     EmployeesComponent,
-    UserRegisterComponent
+    UserRegisterComponent,
+    ForgotPasswordComponent,
+    RecoveryPasswordComponent
   ],
   imports: [
     BrowserModule,

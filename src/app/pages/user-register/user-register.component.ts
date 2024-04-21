@@ -8,6 +8,7 @@ import { EmployeesService } from '../../services/employees.service';
 import { Router } from '@angular/router';
 import Dialogtype, { Dialog } from '../../libs/dialog.lib';
 import { passwordValidator } from '../../libs/password-validator';
+import { Helpers } from '../../libs/helpers';
 
 @Component({
   selector: 'app-user-register',
@@ -15,6 +16,8 @@ import { passwordValidator } from '../../libs/password-validator';
   styleUrl: './user-register.component.scss'
 })
 export class UserRegisterComponent implements OnInit {
+
+  helpers = Helpers;
 
   employeeForm = new FormGroup({
     primer_nombre: new FormControl('', Validators.required),
@@ -58,7 +61,7 @@ export class UserRegisterComponent implements OnInit {
     const data = this.employeeForm.getRawValue() as Employees;
 
     let result = await firstValueFrom(this.employeeservice.create(data));
-    if(result.success){
+    if (result.success) {
       Dialog.show("Registro exitoso.", Dialogtype.success);
     }
     this.router.navigate(["/"]);

@@ -36,7 +36,7 @@
         </div>
         <div class="mb-3">
             <label class="form-label">Número documento</label>
-            <input type="text" class="form-control" formControlName="num_documento"
+            <input type="text" class="form-control" formControlName="num_documento" (keypress)="helpers.onlyNumbers($event)"
                 [ngClass]="{'is-invalid': submited && employeeForm.get('num_documento')?.errors}">
         </div>
         <div class="mb-3">
