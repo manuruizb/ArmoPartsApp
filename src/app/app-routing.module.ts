@@ -5,6 +5,9 @@ import { EmployeesComponent } from './pages/employees/employees.component';
 import { UserRegisterComponent } from './pages/user-register/user-register.component';
 import { ForgotPasswordComponent } from './pages/forgot-password/forgot-password.component';
 import { RecoveryPasswordComponent } from './pages/recovery-password/recovery-password.component';
+import { MasterPageComponent } from './pages/master-page/master-page.component';
+import { AuthGuard } from './guards/auth.guard';
+import { OrdersComponent } from './pages/orders/orders.component';
 
 const routes: Routes = [
   {
@@ -13,7 +16,29 @@ const routes: Routes = [
   },
   {
     path: 'empleados',
-    component: EmployeesComponent
+    component: MasterPageComponent,
+    children: [
+      {
+        outlet: 'master',
+        path: '',
+        component: EmployeesComponent
+      }
+    ], canActivate: [
+      AuthGuard
+    ]
+  },
+  {
+    path: 'pedidos',
+    component: MasterPageComponent,
+    children: [
+      {
+        outlet: 'master',
+        path: '',
+        component: OrdersComponent
+      }
+    ], canActivate: [
+      AuthGuard
+    ]
   },
   {
     path: 'registro-usuario',

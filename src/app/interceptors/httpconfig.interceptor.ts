@@ -8,11 +8,10 @@ import {
     HttpErrorResponse
 } from '@angular/common/http';
 
-import { BehaviorSubject, Observable, throwError } from 'rxjs';
+import {Observable, throwError } from 'rxjs';
 import { map, catchError, finalize } from 'rxjs/operators';
-//import { LoaderService } from '../services/loader.service';
-//import { SessionService } from '../services/session.service';
 import Dialogtype, { Dialog } from '../libs/dialog.lib';
+import { LoaderService } from '../services/loader.service';
 
 @Injectable({
     providedIn: 'root'
@@ -25,8 +24,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
     mivariable : boolean = (1 === 1) ? true : false;
 
     constructor(
-        // public loaderService: LoaderService,
-        // private sessionServices: SessionService
+        public loaderService: LoaderService
     ) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -34,7 +32,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
         this.loader = false;
 
         if (!request.url.includes('noload')) {
-            // this.loaderService.show();
+            this.loaderService.show();
             this.loader = true;
         }
 
@@ -53,7 +51,7 @@ export class HttpConfigInterceptor implements HttpInterceptor {
             map((event: HttpEvent<any>) => {
                 if (event instanceof HttpResponse) {
 
-                    // this.loaderService.hide();
+                    this.loaderService.hide();
                     this.loader = false
                 }
                 return event;
@@ -70,14 +68,14 @@ export class HttpConfigInterceptor implements HttpInterceptor {
 
                 if (data["status"] != "" && data["status"] == "500") {
 
-                    // this.loaderService.hide();
+                    this.loaderService.hide();
 
                     Dialog.show('Ha ocurrido un error con el servicio', Dialogtype.error);
                     return throwError('error-->>>' + error);
 
                 }
                 else {
-                    //this.loaderService.hide();
+                    this.loaderService.hide();
                     if (data.message) {
                         Dialog.show(data.message, Dialogtype.warning);
                     }

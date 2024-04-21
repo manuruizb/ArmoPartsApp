@@ -27,6 +27,9 @@ export class LoginComponent {
     private router: Router
   ) {
 
+    if(this.sessionservice.getSession()){
+      this.router.navigate(['/empleados']);
+    }
   }
 
   async login() {
