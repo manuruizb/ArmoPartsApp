@@ -1,0 +1,28 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">{{modalTitle}}</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef!.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+<form [formGroup]="formsForm" class="form" (ngSubmit)="save()">
+    <div class="modal-body">
+        <div class="mb-3 row">
+            <div class="col-md-6 col-sm-12">
+                <label class="form-label">Entrada</label>
+                <input type="text" class="form-control" formControlName="entrada"
+                    [ngClass]="{'is-invalid': submited && formsForm.get('entrada')?.errors}">
+            </div>
+            <div class="col-md-6 col-sm-12">
+                <label class="form-label">Salida</label>
+                <input type="text" class="form-control" formControlName="salida"
+                    [ngClass]="{'is-invalid': submited && formsForm.get('salida')?.errors}">
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="row buttons">
+            <button type="button" (click)="bsModalRef!.hide()">Cancelar</button>
+            <button type="submit">Guardar</button>
+        </div>
+    </div>
+</form>

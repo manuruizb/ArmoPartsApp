@@ -1,22 +1,22 @@
 import { Injectable } from '@angular/core';
 import { environment } from '../../environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { Areas } from '../models/areas.model';
+import { Forms } from '../models/forms.model';
 import { Result } from '../models/result.model';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AreasService {
+export class FormsService {
 
-  private url: string = environment.urlapi + "/areas"
+  private url: string = environment.urlapi + "/forms"
 
   constructor(
     private http: HttpClient
   ) { }
 
-  getAll() {
-    return this.http.get<Result<Areas[]>>(`${this.url}`);
+  create(form: Forms) {
+    return this.http.post<Result<Forms>>(`${this.url}`, form);
   }
 
 }

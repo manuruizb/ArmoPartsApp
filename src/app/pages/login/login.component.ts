@@ -28,7 +28,7 @@ export class LoginComponent {
   ) {
 
     if(this.sessionservice.getSession()){
-      this.router.navigate(['/empleados']);
+      this.router.navigate(['/pedidos']);
     }
   }
 
@@ -43,7 +43,7 @@ export class LoginComponent {
 
     let result = await firstValueFrom(this.userservice.auth(data));
     this.sessionservice.setSession(result.data!); //guarda la sesión
-    this.router.navigate(["/empleados"]); //redirecciona cuando inicie sesión
+    this.router.navigate(["/pedidos"]); //redirecciona cuando inicie sesión
   }
 
 }

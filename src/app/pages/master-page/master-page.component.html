@@ -9,7 +9,7 @@
 </label>
 <div id="sidebarMenu">
     <ul class="sidebarMenuInner">
-        <li>{{employeeName}} <span>{{employeeRole}}</span></li>
+        <li>{{employeeName}} <span>{{employeeRole}} {{employeeArea ? '(' + employeeArea + ')' : ''}}</span></li>
         <li class="item"><i class="fa-solid fa-users"></i><a routerLink="/empleados">Empleados</a></li>
         <li class="item"><i class="fa-regular fa-calendar-days"></i><a routerLink="/pedidos">Pedidos</a></li>
         <!-- <li class="item"><i class="fa-solid fa-gear"></i><a href="#">Configuración</a></li> -->

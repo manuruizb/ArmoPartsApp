@@ -8,14 +8,12 @@
         (pageChange)="onPageChanged($event)" (onSearch)="getAll(1,$event)" filterPlaceHolder="Buscar por documento">
     </ol-datatable>
 
-
-
 </master-content>
 
 <ng-template #actionsTemplate let-identifier="keyValue">
     <div class="action-column">
-        <i tooltip="Editar" container="body" class="far fa-edit" (click)="openModal(true, identifier)"></i>
+        <i *ngIf="permissions.canEdit" tooltip="Editar" container="body" class="far fa-edit"
+            (click)="openModal(true, identifier)"></i>
         <i tooltip="Ver" container="body" class="far fa-eye" (click)="openModal(false, identifier)"></i>
     </div>
 </ng-template>
-

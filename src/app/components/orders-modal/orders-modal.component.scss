@@ -1,0 +1,28 @@
+.form .buttons {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: end;
+    gap: 5px;
+    align-items: center;
+    color: #818181;
+    font-size: 14px;
+}
+
+.form .buttons a {
+    flex: 0;
+    color: #818181;
+}
+
+.form .buttons button {
+    all: unset;
+
+    border: 1px solid var(--secondary-color);
+    background-color: var(--secondary-color);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    cursor: pointer;
+}

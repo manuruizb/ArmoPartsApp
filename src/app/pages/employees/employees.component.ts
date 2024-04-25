@@ -5,6 +5,8 @@ import { Employees } from '../../models/employees.model';
 import { DatatableDataValues } from '../../shared/datatable/datatable.component';
 import { BsModalRef, BsModalService, ModalOptions } from 'ngx-bootstrap/modal';
 import { EmployeeModalComponent } from '../../components/employee-modal/employee-modal.component';
+import { ValidatePermissions } from '../../libs/validate-permissions';
+import { SessionService } from '../../services/session.service';
 
 @Component({
   selector: 'app-employees',
@@ -23,8 +25,12 @@ export class EmployeesComponent implements OnInit {
   currentPage: number = 1;
 
   bsModalRef?: BsModalRef;
+
+  permissions: ValidatePermissions = new ValidatePermissions(this.sessionService);
+
   constructor(
     private employeeService: EmployeesService,
+    private sessionService: SessionService,
     private modalService: BsModalService) {
 
   }

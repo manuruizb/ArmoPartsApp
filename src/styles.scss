@@ -24,6 +24,10 @@ body {
     background-color: #fafafa !important;
 }
 
+p{
+    margin: 0 !important;
+}
+
 /* Chrome, Edge and Safari */
 *::-webkit-scrollbar {
     height: 10px;
@@ -67,6 +71,10 @@ app-recovery-password {
     width: 100%;
     height: 100vh;
     display: block;
+}
+
+.red{
+    color: var(--secondary-color) !important;
 }
 
 @keyframes fadeIn {

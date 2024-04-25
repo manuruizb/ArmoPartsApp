@@ -25,7 +25,7 @@ export class EmployeesService {
       {
         params: {
           page,
-          pageSize,
+          pagesize: pageSize,
           searchparam: searchParameter ?? ''
         }
       }

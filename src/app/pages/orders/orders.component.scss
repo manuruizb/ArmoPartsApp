@@ -1,0 +1,17 @@
+.progress-container {
+    text-align: center;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+    .progress {
+        min-width: 100px;
+        height: 10px;
+    }
+
+    span {
+        font-size: 11px;
+    }
+}
+
+

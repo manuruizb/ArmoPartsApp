@@ -20,6 +20,8 @@ import { TooltipModule } from 'ngx-bootstrap/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { EmployeeModalComponent } from './components/employee-modal/employee-modal.component';
 import { OrdersComponent } from './pages/orders/orders.component';
+import { OrdersModalComponent } from './components/orders-modal/orders-modal.component';
+import { FormModalComponent } from './components/form-modal/form-modal.component';
 
 @NgModule({
   declarations: [
@@ -33,7 +35,9 @@ import { OrdersComponent } from './pages/orders/orders.component';
     MasterPageComponent,
     DatatableComponent,
     EmployeeModalComponent,
-    OrdersComponent
+    OrdersComponent,
+    OrdersModalComponent,
+    FormModalComponent
   ],
   imports: [
     BrowserModule,

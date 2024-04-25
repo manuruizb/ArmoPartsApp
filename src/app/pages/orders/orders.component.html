@@ -1,10 +1,42 @@
 <master-content placeholder="header" class="page-title">
     Pedidos
     <div class="actions" id="actionbtn">
-        <button class="btn btn-action" type="button"  placement="left"
-            tooltip="Crea un nuevo registro">Nuevo&nbsp;<i class="fas fa-plus"></i></button>
+        <button *ngIf="permissions.canCreate" class="btn btn-action" type="button" placement="left"
+            (click)="openModal(false)" tooltip="Crea un nuevo pedido">Nuevo&nbsp;<i class="fas fa-plus"></i></button>
     </div>
 </master-content>
 <master-content placeholder="main">
-    Mi cuerpito
+    <ol-datatable [JSONdata]="JSONdata" [dataValues]="dataValues" [itemsPerPage]="$any(itemsPerPage)"
+        [totalItems]="totalItems" keyValue="id_pedido" paginatePosition="bottom" [filter]="true"
+        (pageChange)="onPageChanged($event)" (onSearch)="getAll(1,$event)" filterPlaceHolder="Buscar por número de pedido">
+    </ol-datatable>
 </master-content>
+
+<ng-template #actionsTemplate let-identifier="keyValue">
+    <div class="action-column">
+        <i *ngIf="!permissions.canEdit" tooltip="Registrar" container="body" class="fa-solid fa-list-check"
+            (click)="openModalForms(false, identifier)"></i>
+
+    </div>
+</ng-template>
+
+<ng-template #registerTemplate let-data="data">
+    <div *ngIf="!permissions.canEdit" class="action-column" style="justify-content: center !important;">
+        <i [ngClass]="{'fa-solid fa-square-check red' : data.registrado,'fa-regular fa-square': !data.registrado }"></i>
+    </div>
+</ng-template>
+
+<ng-template #progressTemplate let-data="data">
+    <div class="progress-container">
+        <div class="progress">
+            <div class="progress-bar" role="progressbar" [ngClass]="{
+                'bg-danger': math.round((data.formularios?.length! / totalProcess) * 100) <= 20,
+                'bg-warning': math.round((data.formularios?.length! / totalProcess) * 100) <= 75,
+                'bg-success': math.round((data.formularios?.length! / totalProcess) * 100) <= 100,
+                }" [style]="'width: ' + ((data.formularios?.length! / totalProcess) * 100) + '%'" aria-valuemax="100">
+            </div>
+        </div>
+        <span>{{ math.round((data.formularios?.length! / totalProcess) * 100)}}%</span>
+    </div>
+
+</ng-template>
