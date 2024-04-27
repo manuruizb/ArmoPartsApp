@@ -1,0 +1,27 @@
+<div class="modal-header">
+    <h4 class="modal-title pull-left">{{modalTitle}}</h4>
+    <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="bsModalRef!.hide()">
+        <span aria-hidden="true" class="visually-hidden">&times;</span>
+    </button>
+</div>
+
+<div class="modal-body">
+    <h3 class="mb-3">{{data?.Autoparte?.nombre_autoparte}}</h3>
+    <ul class="items">
+        @for (item of areasList; track $index) {
+        <li class="item" (click)="viewDetail($index)" [ngClass]="{'active': item.selected}">
+            <div class="icon-container" [ngClass]="{'active': item.check}">
+                <i [class]="item.icon_class"></i>
+                <i class="checked fa-solid fa-circle-check"></i>
+            </div>
+            <label>{{item.area}}</label>
+        </li>
+        }
+
+    </ul>
+    <div class="details mt-5" [ngClass]="{'active': employeeName }">
+        <p><label>Registrado por:&nbsp;</label>{{employeeName}}</p>
+        <p><label>Entrada:&nbsp;</label>{{input}}</p>
+        <p><label>Salida:&nbsp;</label>{{output}}</p>
+    </div>
+</div>

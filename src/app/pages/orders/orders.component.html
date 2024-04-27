@@ -12,11 +12,11 @@
     </ol-datatable>
 </master-content>
 
-<ng-template #actionsTemplate let-identifier="keyValue">
+<ng-template #actionsTemplate let-identifier="keyValue" let-data="data">
     <div class="action-column">
         <i *ngIf="!permissions.canEdit" tooltip="Registrar" container="body" class="fa-solid fa-list-check"
             (click)="openModalForms(false, identifier)"></i>
-
+        <i tooltip="Ver" container="body" class="far fa-eye" (click)="openModalFormsDetail(identifier, data)"></i>
     </div>
 </ng-template>
 

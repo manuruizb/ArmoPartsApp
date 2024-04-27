@@ -6,6 +6,7 @@
 :root {
     --primary-color: #0a0a0a;
     --secondary-color: #a71b24;
+    --secondary-color-inverted: #fff;
     --secondary-color-rgb: 167, 27, 36;
     --ol-fourth-color: #787878;
     --ol-text-color: #424242;
@@ -16,15 +17,19 @@
 
 * {
     box-sizing: border-box;
-    color: var(--primary-color);
+}
+
+table tr td {
+    color: var(--ol-text-color);
 }
 
 body {
     font-family: "Gothic", sans-serif !important;
     background-color: #fafafa !important;
+    color: var(--primary-color) !important;
 }
 
-p{
+p {
     margin: 0 !important;
 }
 
@@ -73,7 +78,7 @@ app-recovery-password {
     display: block;
 }
 
-.red{
+.red {
     color: var(--secondary-color) !important;
 }
 
@@ -199,7 +204,8 @@ app-recovery-password {
         .btn-action {
             background-color: var(--secondary-color);
             color: #fff !important;
-            i{
+
+            i {
                 color: #fff !important;
                 margin-left: 5px;
             }
@@ -211,4 +217,9 @@ app-recovery-password {
             }
         }
     }
+}
+
+.swal2-styled.swal2-confirm {
+    background-color: var(--secondary-color) !important;
+    color: var(--secondary-color-inverted) !important;
 }

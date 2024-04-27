@@ -1,0 +1,105 @@
+$delay: .1s;
+
+ul.items {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    width: 100%;
+    justify-content: space-around;
+
+    li.item {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        gap: 5px;
+        opacity: 0;
+        cursor: pointer;
+        // Aplicamos la animación fade-in a cada elemento
+        animation: fadeInDown 0.5s ease-in-out;
+        animation-duration: .5s;
+        animation-fill-mode: forwards;
+        // Incrementamos el retraso para cada elemento
+        @for $i from 1 through 10 {
+
+            // Puedes ajustar el rango según la cantidad de elementos
+            &:nth-child(#{$i}) {
+
+                animation-delay: $delay * $i;
+            }
+        }
+
+        .icon-container {
+
+            position: relative;
+            width: 50px;
+            height: 50px;
+            display: grid;
+            place-items: center;
+
+            .checked {
+                display: none;
+            }
+
+            &.active {
+                .checked {
+                    display: block;
+                    position: absolute;
+                    top: 0;
+                    right: 0;
+                    font-size: 20px;
+                    transform: translateX(50%);
+                    color: var(--bs-teal);
+                }
+            }
+
+            i {
+                transition: text-shadow .3s ease-in-out, scale .3s ease-in-out;
+                font-size: 34px;
+                color: var(--ol-text-color);
+            }
+        }
+
+        label {
+            font-size: 12px;
+            font-weight: 800;
+        }
+
+        &:hover{
+            .icon-container i:not(.checked){
+                text-shadow: 2px 2px 4px rgba(var(--secondary-color-rgb), 0.5);
+                transform: scale(1.2);
+            }
+        }
+
+        &.active{
+            .icon-container i:not(.checked){
+                text-shadow: 2px 2px 4px rgba(var(--secondary-color-rgb), 0.5);
+                transform: scale(1.2);
+            }
+            label{
+                text-decoration: underline;
+            }
+        }
+
+
+    }
+}
+
+.details{
+    
+    height: 0;
+    overflow: hidden;
+    transition: height .5s ease-in-out;
+
+    &.active{
+        height: 80px;
+    }
+
+    label{
+        font-weight: 800;
+    }
+}

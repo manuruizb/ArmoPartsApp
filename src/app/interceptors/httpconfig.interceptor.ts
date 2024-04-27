@@ -8,10 +8,12 @@ import {
     HttpErrorResponse
 } from '@angular/common/http';
 
-import {Observable, throwError } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 import { map, catchError, finalize } from 'rxjs/operators';
 import Dialogtype, { Dialog } from '../libs/dialog.lib';
 import { LoaderService } from '../services/loader.service';
+import { SessionService } from '../services/session.service';
+import { Router } from '@angular/router';
 
 @Injectable({
     providedIn: 'root'
@@ -21,10 +23,12 @@ export class HttpConfigInterceptor implements HttpInterceptor {
 
     loader = false;
 
-    mivariable : boolean = (1 === 1) ? true : false;
+    mivariable: boolean = (1 === 1) ? true : false;
 
     constructor(
-        public loaderService: LoaderService
+        private loaderService: LoaderService,
+        private sessionService: SessionService,
+        private router: Router
     ) { }
 
     intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
@@ -46,6 +50,11 @@ export class HttpConfigInterceptor implements HttpInterceptor {
 
         if (!request.headers.has('Accept'))
             request = request.clone({ headers: request.headers.set('Accept', 'application/json') });
+
+        if (this.sessionService.getToken()) {
+            request = request.clone({ headers: request.headers.set('Authorization', `Bearer ${this.sessionService.getToken()}`) });
+        }
+
 
         return next.handle(request).pipe(
             map((event: HttpEvent<any>) => {
@@ -73,6 +82,18 @@ export class HttpConfigInterceptor implements HttpInterceptor {
                     Dialog.show('Ha ocurrido un error con el servicio', Dialogtype.error);
                     return throwError('error-->>>' + error);
 
+                }
+                else if (data["status"] != "" && data["status"] == "401") {
+                    this.loaderService.hide();
+                    this.sessionService.closeSession();
+                    this.router.navigate(['/']);
+                    return throwError('error-->>>' + error);
+                }
+                else if (data["status"] != "" && data["status"] == "403") {
+                    this.loaderService.hide();
+                    this.sessionService.closeSession();
+                    this.router.navigate(['/']);
+                    return throwError('error-->>>' + error);
                 }
                 else {
                     this.loaderService.hide();

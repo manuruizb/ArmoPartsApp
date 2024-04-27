@@ -10,10 +10,15 @@ export class SessionService {
 
   setSession(user: Users) {
     localStorage.setItem("user-session", JSON.stringify(user));
+    localStorage.setItem('token', user.token);
   };
 
   getSession() {
     return JSON.parse(localStorage.getItem("user-session")!) as Users;
+  }
+
+  getToken(){
+    return localStorage.getItem("token");
   }
 
   closeSession() {

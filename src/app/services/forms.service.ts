@@ -19,4 +19,8 @@ export class FormsService {
     return this.http.post<Result<Forms>>(`${this.url}`, form);
   }
 
+  getbyOrderId(id_pedido: string) {
+    return this.http.get<Result<Forms[]>>(`${this.url}/${id_pedido}`);
+  }
+
 }

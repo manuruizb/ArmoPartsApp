@@ -5,5 +5,6 @@ export interface Users{
     contrasena: string,
     reintentos: number,
     estado: boolean,
-    Empleado: Employees
+    Empleado: Employees,
+    token: string
 }

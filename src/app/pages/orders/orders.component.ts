@@ -8,6 +8,7 @@ import { Orders } from '../../models/orders.model';
 import { DatatableDataValues } from '../../shared/datatable/datatable.component';
 import { OrdersService } from '../../services/orders.service';
 import { FormModalComponent } from '../../components/form-modal/form-modal.component';
+import { FormsDetailComponent } from '../../components/forms-detail/forms-detail.component';
 
 @Component({
   selector: 'app-orders',
@@ -80,6 +81,25 @@ export class OrdersComponent implements OnInit {
     };
 
     this.bsModalRef = this.modalService.show(FormModalComponent, initialState);
+
+    this.modalService.onHide.subscribe((reason: string | any) => {
+      this.getAll(1);
+    })
+  }
+
+  openModalFormsDetail(id_pedido: any, data: Orders) {
+
+    const initialState: ModalOptions = {
+      initialState: {
+        modalTitle: `Pedido #${data.num_pedido}`,
+        id_pedido: id_pedido,
+        data: data
+      },
+      ignoreBackdropClick: true,
+      class: 'modal-lg',
+    };
+
+    this.bsModalRef = this.modalService.show(FormsDetailComponent, initialState);
 
     this.modalService.onHide.subscribe((reason: string | any) => {
       this.getAll(1);

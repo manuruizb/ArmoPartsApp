@@ -22,6 +22,7 @@ import { EmployeeModalComponent } from './components/employee-modal/employee-mod
 import { OrdersComponent } from './pages/orders/orders.component';
 import { OrdersModalComponent } from './components/orders-modal/orders-modal.component';
 import { FormModalComponent } from './components/form-modal/form-modal.component';
+import { FormsDetailComponent } from './components/forms-detail/forms-detail.component';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,8 @@ import { FormModalComponent } from './components/form-modal/form-modal.component
     EmployeeModalComponent,
     OrdersComponent,
     OrdersModalComponent,
-    FormModalComponent
+    FormModalComponent,
+    FormsDetailComponent
   ],
   imports: [
     BrowserModule,
