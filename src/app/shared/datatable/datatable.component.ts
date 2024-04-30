@@ -12,7 +12,7 @@ export class DatatableComponent {
   @Input() editable: boolean = false;
   @Input() JSONdata: Array<any> = [];
   @Input() dataValues: Array<DatatableDataValues> = [];
-  @Input() itemsPerPage: number = 10;
+  @Input() itemsPerPage: number = 5;
   @Input() totalItems!: number;
   @Input() keyValue: string = '';
   @Input() paginatePosition: string = 'top';

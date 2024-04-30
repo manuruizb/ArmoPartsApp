@@ -51,7 +51,7 @@
 </div>
 
 <div class="paginator" *ngIf="paginatePosition == 'bottom' && (totalItems > itemsPerPage)">
-    <p class="me-5 pages-info">{{JSONdata.length * currentPage }} de {{totalItems }} Registros</p>
+    <p class="me-5 pages-info">{{((currentPage -1) * itemsPerPage) + JSONdata.length }} de {{totalItems }} Registros</p>
     <pagination [totalItems]="totalItems" [itemsPerPage]="itemsPerPage" [maxSize]="10" [(ngModel)]="currentPage"
         previousText="&lsaquo;" nextText="&rsaquo;" (pageChanged)="pageChanged($event)">
     </pagination>
